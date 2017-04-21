@@ -18,7 +18,7 @@ apply plugin: 'docker'
 
 jar {
 	baseName = 'helloworld'
-	version = '0.0.1'
+	version = '0.0.1-SNAPSHOT'
 }
 
 group = 'yminachi'
