@@ -4,17 +4,10 @@ pipeline {
     agent any
 
     stages {
-        stage("Build") {
+        stage("Gradle Build") {
             steps {
-                echo "Building..."
+                echo "Building Gradle..."
                 sh "./gradlew clean build"
-            }
-        }
-
-        stage("Test") {
-            steps {
-                echo "Testing..."
-                sh "./gradlew test"
             }
         }
 
