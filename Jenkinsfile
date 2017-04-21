@@ -7,17 +7,18 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building..."
-                ./gradlew clean build
+                sh "./gradlew clean build"
             }
         }
 
         stage("Test") {
             steps {
-                echo "testing"
+                echo "Testing..."
+                sh "./gradlew test"
             }
         }
 
-        stage("??") {
+        stage("???") {
             steps {
                 echo "..."
             }
