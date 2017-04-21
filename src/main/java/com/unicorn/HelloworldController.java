@@ -9,7 +9,7 @@ public class HelloworldController {
 
     @RequestMapping("/")
     public String index() {
-        return "Hello World!";
+        return "Ninjas kidnapped the president. Are you a bad enough dude to rescue him?";
     }
 
 }
