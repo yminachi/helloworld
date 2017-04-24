@@ -17,5 +17,12 @@ pipeline {
                 sh "./gradlew buildDocker"
             }
         }
+
+        stage("Deploy Docker") {
+            steps  {
+                echo "Pushing Docker Image To ECR"
+                sh "ci/push-to-ecr.sh"
+            }
+        }
     }
 }
