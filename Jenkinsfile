@@ -11,7 +11,7 @@ node {
         println "commit : ${commit_id}"
 
         stage "Build Docker"
-        def app = docker.build "helloworld"
+        def app = docker.build "311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test"
 
         stage "Deploy Docker"
         app.push "${commit_id}"
