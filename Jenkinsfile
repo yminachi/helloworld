@@ -14,16 +14,20 @@ pipeline {
         stage("Build Docker") {
             steps {
                 echo "Build Docker Image"
+                script {
+                    docker.build('helloworld')
+                }
             }
-            docker.build('helloworld')
         }
 
         stage("Deploy Docker") {
             steps {
                 echo "Deploy Docker Image"
-            }
-            docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
-                docker.image('helloworld').push('latest')
+                script {
+                    docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
+                        docker.image('helloworld').push('latest')
+                    }
+                }
             }
         }
     }
