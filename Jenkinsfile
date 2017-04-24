@@ -1,8 +1,8 @@
 #!groovy
 
 node {
-    def commit_id
     def app
+    def tag
 
     docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
         stage("Pull Code") {
@@ -15,8 +15,8 @@ node {
             sh "./gradlew clean build"
 
             sh "git rev-parse HEAD > .git/commit-id"
-            commit_id = readFile('.git/commit-id').trim()
-            println "commit : ${commit_id}"
+            tag = readFile('.git/commit-id').trim().subString(0,12)
+            println "tag : ${tag}"
         }
 
         stage("Build Docker") {
@@ -24,7 +24,7 @@ node {
         }
 
         stage("Deploy Docker") {
-            app.push "${commit_id}"
+            app.push "${tag}"
         }
     }
 }
