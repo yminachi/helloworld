@@ -15,7 +15,7 @@ node {
             sh "./gradlew clean build"
 
             sh "git rev-parse HEAD > .git/commit-id"
-            tag = readFile('.git/commit-id').trim().subString(0,12)
+            tag = readFile('.git/commit-id').trim().substring(0, 12)
             println "tag : ${tag}"
         }
 
