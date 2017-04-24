@@ -4,7 +4,7 @@ node {
     docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
         stage "Pull Code"
         echo "Pulling the Code"
-        git url: "https://github.com/yminachi/helloworld.git"
+        checkout scm
 
         stage "Gradle Build"
         echo "Building Gradle..."
