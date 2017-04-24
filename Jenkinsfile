@@ -25,7 +25,7 @@ pipeline {
                 echo "Deploy Docker Image"
                 script {
                     docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
-                        docker.image('311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test').push('0.0.1')
+                        docker.image('311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test').push('latest')
                     }
                 }
             }
