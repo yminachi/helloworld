@@ -11,15 +11,10 @@ pipeline {
             }
         }
 
-        stage("???") {
+        stage("Build Docker") {
             steps {
-                echo "..."
-            }
-        }
-
-        stage("Unicorns") {
-            steps {
-                echo "Unicorns!"
+                echo "Building Docker Image"
+                sh "./gradlew buildDocker"
             }
         }
     }
