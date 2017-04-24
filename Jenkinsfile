@@ -13,15 +13,17 @@ pipeline {
 
         stage("Build Docker") {
             steps {
-                echo "Building Docker Image"
-                sh "./gradlew buildDocker"
+                echo "Build Docker Image"
+                docker.build('helloworld')
             }
         }
 
         stage("Deploy Docker") {
-            steps  {
-                echo "Pushing Docker Image To ECR"
-                sh "ci/push-to-ecr.sh"
+            steps {
+                echo "Deploy Docker Image"
+                docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
+                    docker.image('helloworld').push('latest')
+                }
             }
         }
     }
