@@ -1,9 +1,6 @@
 #!groovy
 
-node {
-    agent {
-        label 'jenkins-slave'
-    }
+node('jenkins-slave') {
 
     def app
     def tag
