@@ -24,8 +24,16 @@ node('jenkins-slave') {
             app = docker.build "311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test"
         }
 
-        stage("Deploy Docker") {
+        stage("Publish Docker") {
             app.push "${tag}"
+        }
+
+        stage("Run deployment job") {
+            build job: 'pegasus-infra stack deploy', parameters: [[
+                $class: 'StringParameterValue',
+                name: 'ECR_HELLOWORLD_IMAGE_TAG',
+                value: "${tag}"
+            ]]
         }
     }
 }
