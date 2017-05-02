@@ -5,7 +5,7 @@ node('jenkins-slave') {
     def app
     def tag
 
-    docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:SOMEID") {
+    docker.withRegistry("https://311142959634.dkr.ecr.us-east-1.amazonaws.com/microservice-test", "ecr:us-east-1:AWSCREDENTIALS") {
         stage("Pull Code") {
             echo "Pulling the Code"
             checkout scm
